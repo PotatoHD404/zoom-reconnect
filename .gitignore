@@ -86,3 +86,5 @@ web_modules/
 
 # Webstorm
 .idea
+
+userdata.json
