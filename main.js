@@ -1,26 +1,32 @@
-const { app, BrowserWindow } = require('electron')
-const path = require('path')
+// const {app, BrowserWindow} = require('electron')
+import {app, BrowserWindow} from 'electron'
+import path from 'path'
+// const path = require('path')
+// const {ipcMain} = require('electron')
+// import url from 'url';
 
-function createWindow () {
+function createMainWindow() {
     const win = new BrowserWindow({
         width: 800,
         height: 600,
         webPreferences: {
-            preload: path.join(__dirname, 'preload.js')
+            preload: path.join(__dirname, 'scripts/preload_main.js')
         }
     })
 
-    win.loadFile('index.html')
-    win.loadURL('https://github.com');
+    win.loadFile('pages/index.html').then(() => {
+    });
+    // win.loadURL('');
 }
 
+// https://medium.com/@kahlil/how-to-communicate-between-two-electron-windows-166fdbcdc469
+
 app.whenReady().then(() => {
-    createWindow()
+    createMainWindow()
 
     app.on('activate', () => {
         if (BrowserWindow.getAllWindows().length === 0) {
-            createWindow()
-            // win.open('https://github.com', '_blank', 'top=500,left=200,frame=false,nodeIntegration=no');
+            createMainWindow();
         }
     })
 })
@@ -29,6 +35,6 @@ app.whenReady().then(() => {
 
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
-        app.quit()
+        app.quit();
     }
 })
