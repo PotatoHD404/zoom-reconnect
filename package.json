@@ -13,7 +13,7 @@
   "license": "MIT",
   "devDependencies": {
     "babel-register": "^6.26.0",
-    "electron": "^15.3.0",
+    "electron": "^15.3.5",
     "electron-nightly": "^17.0.0-nightly.20211105",
     "electron-rebuild": "^3.2.3"
   },
